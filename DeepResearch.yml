@@ -1,0 +1,2461 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: DeepResearch
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/anthropic:0.0.13@3c4d4e14652baa9ce1f10e934da9995b3cde0f2ec94ee6638b73fecf1ed53288
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.20@af8b6bea00bbb4caa2f8e15b5edd2fc2bc134a9bfee74d9cc8081b8fe71eca6b
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@7afb534cc85b28a8e9c7f9410d1cfc31fb7bd3950023355a37059dbe809ac776
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 338ce4e9-ebfc-4be9-99a7-a9c2b65a22b5
+    name: QueriesSearched
+    selector:
+    - conversation
+    - QueriesSearched
+    value: []
+    value_type: array[string]
+  - description: ''
+    id: 5a20d1cd-0245-4963-a3a1-0a1d69a8a83d
+    name: extractAnswerFinished
+    selector:
+    - conversation
+    - extractAnswerFinished
+    value: ''
+    value_type: string
+  - description: ''
+    id: 84ff6ff2-ad61-4d65-ba0d-5d5c8467722e
+    name: shouldContinue
+    selector:
+    - conversation
+    - shouldContinue
+    value: ''
+    value_type: string
+  - description: ''
+    id: 3423d6ee-e199-4989-80a3-bfcc4f603ab5
+    name: findings
+    selector:
+    - conversation
+    - findings
+    value: []
+    value_type: array[string]
+  - description: ''
+    id: cf540d63-36bd-4423-b481-e35d38ef5219
+    name: nextQuery
+    selector:
+    - conversation
+    - nextQuery
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: '最適な情報をお届けするため、必要に応じて複数回の検索を行い、最善の回答を導き出します。ご質問がございましたら、お気軽にどうぞ。
+
+
+      为提供最准确的信息，将根据需要进行多轮检索，确保呈现最佳答案。请随时提问。
+
+
+      To ensure the most accurate information, multiple searches will be conducted
+      as needed to deliver the best possible answer. Please feel free to ask your
+      questions.'
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1745943016894-source-1745943903028-target
+      selected: false
+      source: '1745943016894'
+      sourceHandle: source
+      target: '1745943903028'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: loop-start
+        targetType: agent
+      id: 1745943946427start-source-1745944108136-target
+      selected: false
+      source: 1745943946427start
+      sourceHandle: source
+      target: '1745944108136'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: tool
+        targetType: assigner
+      id: 1745944704608-source-1745945073957-target
+      selected: false
+      source: '1745944704608'
+      sourceHandle: source
+      target: '1745945073957'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: assigner
+      id: 1745943903028-source-1745945373738-target
+      selected: false
+      source: '1745943903028'
+      sourceHandle: source
+      target: '1745945373738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: loop
+      id: 1745945373738-source-1745943946427-target
+      selected: false
+      source: '1745945373738'
+      sourceHandle: source
+      target: '1745943946427'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: assigner
+        targetType: llm
+      id: 1745945073957-source-1745945312164-target
+      selected: false
+      source: '1745945073957'
+      sourceHandle: source
+      target: '1745945312164'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: llm
+        targetType: tool
+      id: 1745945312164-source-1745945672839-target
+      selected: false
+      source: '1745945312164'
+      sourceHandle: source
+      target: '1745945672839'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: loop
+        targetType: llm
+      id: 1745943946427-source-1745946067913-target
+      selected: false
+      source: '1745943946427'
+      sourceHandle: source
+      target: '1745946067913'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1745946067913-source-1745946106070-target
+      selected: false
+      source: '1745946067913'
+      sourceHandle: source
+      target: '1745946106070'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: tool
+        targetType: assigner
+      id: 1745946219029-source-1745946198483-target
+      selected: false
+      source: '1745946219029'
+      sourceHandle: source
+      target: '1745946198483'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: llm
+        targetType: tool
+      id: 1745944404219-source-1745944704608-target
+      selected: false
+      source: '1745944404219'
+      sourceHandle: source
+      target: '1745944704608'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: if-else
+        targetType: llm
+      id: 1745946759840-true-1745946819221-target
+      selected: false
+      source: '1745946759840'
+      sourceHandle: 'true'
+      target: '1745946819221'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: assigner
+        targetType: assigner
+      id: 1745948573072-source-1745948594725-target
+      selected: false
+      source: '1745948573072'
+      sourceHandle: source
+      target: '1745948594725'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: llm
+        targetType: answer
+      id: 1745946819221-source-1745945983282-target
+      selected: false
+      source: '1745946819221'
+      sourceHandle: source
+      target: '1745945983282'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: agent
+        targetType: assigner
+      id: 1745944108136-source-1745949388671-target
+      selected: false
+      source: '1745944108136'
+      sourceHandle: source
+      target: '1745949388671'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: assigner
+        targetType: llm
+      id: 1745949388671-source-1745944404219-target
+      selected: false
+      source: '1745949388671'
+      sourceHandle: source
+      target: '1745944404219'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1745940550449-source-1745949777606-target
+      selected: false
+      source: '1745940550449'
+      sourceHandle: source
+      target: '1745949777606'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1745949777606-1-1745943016894-target
+      selected: false
+      source: '1745949777606'
+      sourceHandle: '1'
+      target: '1745943016894'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1745949777606-2-1745949819169-target
+      selected: false
+      source: '1745949777606'
+      sourceHandle: '2'
+      target: '1745949819169'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1745949819169-source-1745949901553-target
+      selected: false
+      source: '1745949819169'
+      sourceHandle: source
+      target: '1745949901553'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: tool
+        targetType: if-else
+      id: 1745944704608-source-1745946759840-target
+      selected: false
+      source: '1745944704608'
+      sourceHandle: source
+      target: '1745946759840'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: answer
+        targetType: assigner
+      id: 1745945983282-source-1745948573072-target
+      selected: false
+      source: '1745945983282'
+      sourceHandle: source
+      target: '1745948573072'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: tool
+        targetType: tool
+      id: 1745945672839-source-1745946219029-target
+      source: '1745945672839'
+      sourceHandle: source
+      target: '1745946219029'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: assigner
+        targetType: if-else
+      id: 1745946198483-source-1745945703443-target
+      source: '1745946198483'
+      sourceHandle: source
+      target: '1745945703443'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: if-else
+        targetType: assigner
+      id: 1745945703443-true-1745946151228-target
+      source: '1745945703443'
+      sourceHandle: 'true'
+      target: '1745946151228'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: assigner
+      id: 1745946106070-source-1745952448991-target
+      source: '1745946106070'
+      sourceHandle: source
+      target: '1745952448991'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1745949777606-1745953192577-1745949819169-target
+      source: '1745949777606'
+      sourceHandle: '1745953192577'
+      target: '1745949819169'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1745940550449'
+      position:
+        x: 30
+        y: 470
+      positionAbsolute:
+        x: 30
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            json_schema: "{\n  \"name\": \"search_query\",\n  \"schema\": {\n    \"\
+              type\": \"object\",\n    \"properties\": {\n      \"search_question\"\
+              : {\n        \"type\": \"string\",\n        \"description\": \"The question\
+              \ being asked in the search.\"\n      }\n    },\n    \"required\": [\n\
+              \      \"search_question\"\n    ],\n    \"additionalProperties\": false\n\
+              \  },\n  \"strict\": true\n}"
+            response_format: json_schema
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 7cf9ae4d-d1d7-489a-af8c-21ea0b5057ad
+          role: system
+          text: 'You are tasked with extracting the main search question from a user
+            query. The user query may contain additional context or information, but
+            your job is to identify and isolate the core question that needs to be
+            searched.
+
+
+            Here is the user query:
+
+            <user_query>
+
+            {{USER_QUERY}}
+
+            </user_query>
+
+
+            To extract the search question:
+
+            1. Read the entire query carefully.
+
+            2. Identify the main question or request within the query.
+
+            3. Remove any unnecessary context, greetings, or additional information.
+
+            4. Ensure the extracted question is clear and concise.
+
+            5. If there are multiple questions, focus on the primary one.
+
+
+            Output your result in JSON format with a single key "search_question"
+            and the extracted question as its value.
+
+
+            Here''s an example:
+
+
+            User Query: "Hi there! I''m wondering about the capital of France. Can
+            you tell me what it is?"
+
+            Extracted JSON: {"search_question": "What is the capital of France?"}
+
+
+            Now, please extract the search question from the provided user query and
+            output it in the specified JSON format.'
+        - id: 5d979b95-3046-4eeb-9ee2-a4f998dfbb61
+          role: user
+          text: '<user_query>
+
+            {{#sys.query#}}
+
+            </user_query>'
+        selected: false
+        title: LLM Question
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745943016894'
+      position:
+        x: 638
+        y: 470
+      positionAbsolute:
+        x: 638
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: Question
+        tool_configurations:
+          ensure_ascii: 0
+        tool_description: A tool for extracting JSON objects
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1745943016894.text#}}'
+          json_filter:
+            type: mixed
+            value: search_question
+        type: tool
+      height: 90
+      id: '1745943903028'
+      position:
+        x: 942
+        y: 470
+      positionAbsolute:
+        x: 942
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        break_conditions:
+        - comparison_operator: is
+          id: 1198f8af-575e-4e2f-96a9-c02ce4e85cc8
+          value: 'false'
+          varType: string
+          variable_selector:
+          - conversation
+          - shouldContinue
+        - comparison_operator: is
+          id: 4ef4beb2-c455-4eb0-8504-56d5d7c52fb7
+          value: 'true'
+          varType: string
+          variable_selector:
+          - conversation
+          - extractAnswerFinished
+        desc: ''
+        error_handle_mode: terminated
+        height: 540
+        logical_operator: and
+        loop_count: 10
+        loop_variables:
+        - id: bf84813c-11f1-44f6-8f6e-7f3665bb3dbe
+          label: search_question
+          value:
+          - conversation
+          - nextQuery
+          value_type: variable
+          var_type: string
+        selected: false
+        start_node_id: 1745943946427start
+        title: Loop
+        type: loop
+        width: 3548
+      height: 540
+      id: '1745943946427'
+      position:
+        x: 1550
+        y: 470
+      positionAbsolute:
+        x: 1550
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 3548
+      zIndex: 1
+    - data:
+        desc: ''
+        isInLoop: true
+        selected: false
+        title: ''
+        type: loop-start
+      draggable: false
+      height: 48
+      id: 1745943946427start
+      parentId: '1745943946427'
+      position:
+        x: 60
+        y: 135
+      positionAbsolute:
+        x: 1610
+        y: 605
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-loop-start
+      width: 44
+      zIndex: 1002
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: "You are an AI assistant tasked with answering questions using\
+              \ the tavily_search tool to find relevant information. Your goal is\
+              \ to provide accurate and helpful answers based on the search results.\n\
+              \nSearch information follow the below instructions:\n- Determine the\
+              \ most appropriate language(use only 1 lanugage per search) for the\
+              \ search based on the query's subject matter (e.g., use Japanese for\
+              \ queries about Japan, Chinese for queries about China, etc.).\n- Breakdown\
+              \ the query if necessary to improve search results, let the user know\
+              \ which language you will use to search for information.\n- Use the\
+              \ tool \"tavily_search\" to gather up-to-date information. \n- After\
+              \ receiving the search results, analyze the information and formulate\
+              \ your response.\n- Provide your answer to the user's query, incorporating\
+              \ the information gathered from the search, and include the sources\
+              \ at the end of your output in the following format:\n# Sources:\n1.\
+              \ [Link Title 1](URL1)\n2. [Link Title 2](URL2)"
+          maximum_iterations:
+            type: constant
+            value: 4
+          model:
+            type: constant
+            value:
+              completion_params:
+                temperature: 0.6
+              mode: chat
+              model: claude-3-5-sonnet-20241022
+              model_type: llm
+              provider: langgenius/anthropic/anthropic
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#conversation.nextQuery#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: A search engine tool built specifically for AI agents
+                  (LLMs), delivering real-time, accurate, and factual results at speed.
+              parameters:
+                days:
+                  auto: 1
+                  value: null
+                query:
+                  auto: 1
+                  value: null
+                search_depth:
+                  auto: 1
+                  value: null
+                time_range:
+                  auto: 1
+                  value: null
+                topic:
+                  auto: 1
+                  value: null
+              provider_name: langgenius/tavily/tavily
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: The search query you want to execute with Tavily.
+                  ja_JP: The search query you want to execute with Tavily.
+                  pt_BR: The search query you want to execute with Tavily.
+                  zh_Hans: 您想用 Tavily 执行的搜索查询。
+                label:
+                  en_US: Query
+                  ja_JP: Query
+                  pt_BR: Query
+                  zh_Hans: 查询
+                llm_description: The search query.
+                max: null
+                min: null
+                name: query
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: basic
+                form: llm
+                human_description:
+                  en_US: The depth of the search.
+                  ja_JP: The depth of the search.
+                  pt_BR: The depth of the search.
+                  zh_Hans: 搜索的深度。
+                label:
+                  en_US: Search Depth
+                  ja_JP: Search Depth
+                  pt_BR: Search Depth
+                  zh_Hans: 搜索深度
+                llm_description: The depth of the search. 'basic' for standard search,
+                  'advanced' for more comprehensive results.
+                max: null
+                min: null
+                name: search_depth
+                options:
+                - label:
+                    en_US: Basic
+                    ja_JP: Basic
+                    pt_BR: Basic
+                    zh_Hans: 基本
+                  value: basic
+                - label:
+                    en_US: Advanced
+                    ja_JP: Advanced
+                    pt_BR: Advanced
+                    zh_Hans: 高级
+                  value: advanced
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: select
+              - auto_generate: null
+                default: general
+                form: llm
+                human_description:
+                  en_US: The category of the search.
+                  ja_JP: The category of the search.
+                  pt_BR: The category of the search.
+                  zh_Hans: 搜索的类别。
+                label:
+                  en_US: Topic
+                  ja_JP: Topic
+                  pt_BR: Topic
+                  zh_Hans: 主题
+                llm_description: The category of the search. Options include 'general',
+                  'news', or 'finance'.
+                max: null
+                min: null
+                name: topic
+                options:
+                - label:
+                    en_US: General
+                    ja_JP: General
+                    pt_BR: General
+                    zh_Hans: 一般
+                  value: general
+                - label:
+                    en_US: News
+                    ja_JP: News
+                    pt_BR: News
+                    zh_Hans: 新闻
+                  value: news
+                - label:
+                    en_US: Finance
+                    ja_JP: Finance
+                    pt_BR: Finance
+                    zh_Hans: 金融
+                  value: finance
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: select
+              - auto_generate: null
+                default: 3
+                form: llm
+                human_description:
+                  en_US: The number of days back from the current date to include
+                    in the search results (only applicable when "topic" is "news").
+                  ja_JP: The number of days back from the current date to include
+                    in the search results (only applicable when "topic" is "news").
+                  pt_BR: The number of days back from the current date to include
+                    in the search results (only applicable when "topic" is "news").
+                  zh_Hans: 从当前日期起向前追溯的天数，以包含在搜索结果中（仅当"topic"为"news"时适用）。
+                label:
+                  en_US: Days
+                  ja_JP: Days
+                  pt_BR: Days
+                  zh_Hans: 天数
+                llm_description: The number of days back from the current date to
+                  include in the search results. Only applicable when "topic" is "news".
+                max: null
+                min: 1
+                name: days
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: not_specified
+                form: llm
+                human_description:
+                  en_US: The time range back from the current date to filter results.
+                  ja_JP: The time range back from the current date to filter results.
+                  pt_BR: The time range back from the current date to filter results.
+                  zh_Hans: 从当前日期起向后筛选结果的时间范围。
+                label:
+                  en_US: Time Range
+                  ja_JP: Time Range
+                  pt_BR: Time Range
+                  zh_Hans: 时间范围
+                llm_description: The time range back from the current date to filter
+                  results. Options include 'not_specified', 'day', 'week', 'month',
+                  or 'year'.
+                max: null
+                min: null
+                name: time_range
+                options:
+                - label:
+                    en_US: Not Specified
+                    ja_JP: Not Specified
+                    pt_BR: Not Specified
+                    zh_Hans: 不指定
+                  value: not_specified
+                - label:
+                    en_US: Day
+                    ja_JP: Day
+                    pt_BR: Day
+                    zh_Hans: 天
+                  value: day
+                - label:
+                    en_US: Week
+                    ja_JP: Week
+                    pt_BR: Week
+                    zh_Hans: 周
+                  value: week
+                - label:
+                    en_US: Month
+                    ja_JP: Month
+                    pt_BR: Month
+                    zh_Hans: 月
+                  value: month
+                - label:
+                    en_US: Year
+                    ja_JP: Year
+                    pt_BR: Year
+                    zh_Hans: 年
+                  value: year
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: select
+              - auto_generate: null
+                default: 5
+                form: form
+                human_description:
+                  en_US: The maximum number of search results to return.
+                  ja_JP: The maximum number of search results to return.
+                  pt_BR: The maximum number of search results to return.
+                  zh_Hans: 要返回的最大搜索结果数。
+                label:
+                  en_US: Max Results
+                  ja_JP: Max Results
+                  pt_BR: Max Results
+                  zh_Hans: 最大结果数
+                llm_description: The maximum number of search results to return. Range
+                  is 1-20.
+                max: 20
+                min: 1
+                name: max_results
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: 0
+                form: form
+                human_description:
+                  en_US: Include a list of query-related images in the response.
+                  ja_JP: Include a list of query-related images in the response.
+                  pt_BR: Include a list of query-related images in the response.
+                  zh_Hans: 在响应中包含与查询相关的图片列表。
+                label:
+                  en_US: Include Images
+                  ja_JP: Include Images
+                  pt_BR: Include Images
+                  zh_Hans: 包含图片
+                llm_description: When set to true, includes a list of query-related
+                  images in the response.
+                max: null
+                min: null
+                name: include_images
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: boolean
+              - auto_generate: null
+                default: 0
+                form: form
+                human_description:
+                  en_US: When include_images is True, adds descriptive text for each
+                    image.
+                  ja_JP: When include_images is True, adds descriptive text for each
+                    image.
+                  pt_BR: When include_images is True, adds descriptive text for each
+                    image.
+                  zh_Hans: 当 include_images 为 True 时，为每个图像添加描述文本。
+                label:
+                  en_US: Include Image Descriptions
+                  ja_JP: Include Image Descriptions
+                  pt_BR: Include Image Descriptions
+                  zh_Hans: 包含图片描述
+                llm_description: When include_images is True and this is set to true,
+                  adds descriptive text for each image.
+                max: null
+                min: null
+                name: include_image_descriptions
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: boolean
+              - auto_generate: null
+                default: 0
+                form: form
+                human_description:
+                  en_US: Include a short answer to the original query in the response.
+                  ja_JP: Include a short answer to the original query in the response.
+                  pt_BR: Include a short answer to the original query in the response.
+                  zh_Hans: 在响应中包含对原始查询的简短回答。
+                label:
+                  en_US: Include Answer
+                  ja_JP: Include Answer
+                  pt_BR: Include Answer
+                  zh_Hans: 包含答案
+                llm_description: When set to true, includes a short answer to the
+                  original query in the response.
+                max: null
+                min: null
+                name: include_answer
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: boolean
+              - auto_generate: null
+                default: 0
+                form: form
+                human_description:
+                  en_US: Include the cleaned and parsed HTML content of each search
+                    result.
+                  ja_JP: Include the cleaned and parsed HTML content of each search
+                    result.
+                  pt_BR: Include the cleaned and parsed HTML content of each search
+                    result.
+                  zh_Hans: 包含每个搜索结果的已清理和解析的HTML内容。
+                label:
+                  en_US: Include Raw Content
+                  ja_JP: Include Raw Content
+                  pt_BR: Include Raw Content
+                  zh_Hans: 包含原始内容
+                llm_description: When set to true, includes the cleaned and parsed
+                  HTML content of each search result.
+                max: null
+                min: null
+                name: include_raw_content
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: boolean
+              - auto_generate: null
+                default: null
+                form: form
+                human_description:
+                  en_US: A comma-separated list of domains to specifically include
+                    in the search results.
+                  ja_JP: A comma-separated list of domains to specifically include
+                    in the search results.
+                  pt_BR: A comma-separated list of domains to specifically include
+                    in the search results.
+                  zh_Hans: 要在搜索结果中特别包含的域的逗号分隔列表。
+                label:
+                  en_US: Include Domains
+                  ja_JP: Include Domains
+                  pt_BR: Include Domains
+                  zh_Hans: 包含域
+                llm_description: A comma-separated list of domains to specifically
+                  include in the search results.
+                max: null
+                min: null
+                name: include_domains
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: form
+                human_description:
+                  en_US: A comma-separated list of domains to specifically exclude
+                    from the search results.
+                  ja_JP: A comma-separated list of domains to specifically exclude
+                    from the search results.
+                  pt_BR: A comma-separated list of domains to specifically exclude
+                    from the search results.
+                  zh_Hans: 要从搜索结果中特别排除的域的逗号分隔列表。
+                label:
+                  en_US: Exclude Domains
+                  ja_JP: Exclude Domains
+                  pt_BR: Exclude Domains
+                  zh_Hans: 排除域
+                llm_description: A comma-separated list of domains to specifically
+                  exclude from the search results.
+                max: null
+                min: null
+                name: exclude_domains
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              settings:
+                exclude_domains:
+                  value: null
+                include_answer:
+                  value: 0
+                include_domains:
+                  value: null
+                include_image_descriptions:
+                  value: 0
+                include_images:
+                  value: 0
+                include_raw_content:
+                  value: 0
+                max_results:
+                  value: 5
+              tool_description: A search engine tool built specifically for AI agents
+                (LLMs), delivering real-time, accurate, and factual results at speed.
+              tool_label: Tavily Search
+              tool_name: tavily_search
+              type: builtin
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.14@26958a0e80a10655ce73812bdb7c35a66ce7b16f5ac346d298bda17ff85efd1e
+        selected: false
+        title: Search Agent
+        type: agent
+      height: 198
+      id: '1745944108136'
+      parentId: '1745943946427'
+      position:
+        x: 204
+        y: 60
+      positionAbsolute:
+        x: 1754
+        y: 530
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        model:
+          completion_params:
+            json_schema: "{\n  \"name\": \"relevant_findings\",\n  \"schema\": {\n\
+              \    \"type\": \"object\",\n    \"properties\": {\n      \"relevant_findings\"\
+              : {\n        \"type\": \"array\",\n        \"description\": \"A list\
+              \ of findings with their sources\",\n        \"items\": {\n        \
+              \  \"type\": \"object\",\n          \"properties\": {\n            \"\
+              finding\": {\n              \"type\": \"string\",\n              \"\
+              description\": \"Extracted relevant information\"\n            },\n\
+              \            \"source\": {\n              \"type\": \"string\",\n  \
+              \            \"description\": \"URL or reference to where this information\
+              \ was found\"\n            }\n          },\n          \"required\":\
+              \ [\n            \"finding\",\n            \"source\"\n          ],\n\
+              \          \"additionalProperties\": false\n        }\n      }\n   \
+              \ },\n    \"required\": [\n      \"relevant_findings\"\n    ],\n   \
+              \ \"additionalProperties\": false\n  },\n  \"strict\": true\n}"
+            response_format: json_schema
+            temperature: 0.6
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 1c1b2f77-437d-4cd5-9706-bb77812a1c5e
+          role: system
+          text: "You are an advanced AI assistant specialized in extracting relevant\
+            \ information from search results based on specific questions. Your task\
+            \ is to analyze a given search result and extract findings that directly\
+            \ answer or relate to a provided question.\n\nHere is the question you\
+            \ need to focus on:\n\n<question>\n{{QUESTION}}\n</question>\n\nHere is\
+            \ the search result you need to analyze:\n\n<search_result>\n{{SEARCH_RESULT}}\n\
+            </search_result>\n\nYour goal is to carefully examine the search result\
+            \ and extract only the information that is directly relevant to answering\
+            \ the question. Follow these steps:\n\n1. Analyze the search result thoroughly.\n\
+            2. Identify specific facts, data, or statements that directly address\
+            \ the question.\n3. Extract these relevant findings, along with their\
+            \ source links.\n4. Ignore any information that is not pertinent to the\
+            \ question, even if it seems interesting.\n5. If multiple relevant findings\
+            \ are present, extract all of them.\n6. If no relevant information is\
+            \ found, do not force an extraction.\n\nBefore providing your final output,\
+            \ break down your thought process inside <information_extraction> tags.\
+            \ This will help ensure a thorough interpretation of the data. In your\
+            \ analysis, consider the following:\n\n- Summarize the main points of\
+            \ the search result\n- List potential relevant information with brief\
+            \ explanations of how each relates to the question\n- Rate the relevance\
+            \ of each piece of information on a scale of 1-5\n- Identify and quote\
+            \ the most relevant parts of the search result\n- What are the source\
+            \ links for each relevant piece of information?\n\nAfter your analysis,\
+            \ present your findings in a JSON structure with the following format:\n\
+            \n{\n  \"relevant_findings\": [\n    {\n      \"finding\": \"extracted\
+            \ relevant information\",\n      \"source\": \"URL or reference to where\
+            \ this information was found\"\n    },\n    {\n      \"finding\": \"another\
+            \ relevant piece of information\",\n      \"source\": \"URL or reference\
+            \ to where this information was found\"\n    }\n  ]\n}\n\nIf no relevant\
+            \ findings are identified, output an empty array for \"relevant_findings\"\
+            .\n\nRemember:\n- Focus solely on extracting information that is directly\
+            \ related to answering the question.\n- Do not include any personal interpretation\
+            \ or irrelevant details.\n- Provide a concise, factual extraction of relevant\
+            \ findings from the search result.\n- Include the source (link or reference)\
+            \ for each finding.\n\nNow, proceed with your analysis and extraction\
+            \ of relevant findings."
+        - id: 652b7248-1c0d-46d9-aba2-56e20be3e355
+          role: user
+          text: 'Here is the question:
+
+            <question>
+
+            {{#conversation.nextQuery#}}
+
+            </question>
+
+
+            Here is the search result:
+
+            <search_result>
+
+            {{#1745944108136.text#}}
+
+            </search_result>'
+        selected: false
+        title: LLM Extract Findings
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745944404219'
+      parentId: '1745943946427'
+      position:
+        x: 812
+        y: 114
+      positionAbsolute:
+        x: 2362
+        y: 584
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        is_team_authorization: true
+        loop_id: '1745943946427'
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: Extract Findings
+        tool_configurations:
+          ensure_ascii: 0
+        tool_description: A tool for extracting JSON objects
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1745944404219.text#}}'
+          json_filter:
+            type: mixed
+            value: relevant_findings
+        type: tool
+      height: 90
+      id: '1745944704608'
+      parentId: '1745943946427'
+      position:
+        x: 1116
+        y: 114
+      positionAbsolute:
+        x: 2666
+        y: 584
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: append
+          value:
+          - '1745944704608'
+          - text
+          variable_selector:
+          - conversation
+          - findings
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Variable Assigner
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745945073957'
+      parentId: '1745943946427'
+      position:
+        x: 1420
+        y: 115
+      positionAbsolute:
+        x: 2970
+        y: 585
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        model:
+          completion_params:
+            json_schema: "{\n  \"name\": \"query_response\",\n  \"schema\": {\n  \
+              \  \"type\": \"object\",\n    \"properties\": {\n      \"shouldContinue\"\
+              : {\n        \"type\": \"string\",\n        \"description\": \"Indicates\
+              \ whether to continue the process, represented as 'true' or 'false'.\"\
+              \n      },\n      \"nextQuery\": {\n        \"type\": \"string\",\n\
+              \        \"description\": \"The next formulated query or 'None' if there\
+              \ is no next query.\"\n      }\n    },\n    \"required\": [\n      \"\
+              shouldContinue\",\n      \"nextQuery\"\n    ],\n    \"additionalProperties\"\
+              : false\n  },\n  \"strict\": true\n}"
+            response_format: json_schema
+            temperature: 0.6
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 86cc81da-3487-40be-bc93-2cc6663fd5e3
+          role: system
+          text: "You are an AI assistant tasked with deciding whether to continue\
+            \ searching for information to answer a given question. You will be provided\
+            \ with the following inputs:\n\n<question>\n{{QUESTION}}\n</question>\n\
+            \n<queries>\n{{QUERIES}}\n</queries>\n\n<findings>\n{{FINDINGS}}\n</findings>\n\
+            \nYour task is to analyze the current findings and determine if they are\
+            \ sufficient to answer the question or if more information is needed.\
+            \ Follow these steps:\n\n1. Carefully read the question and understand\
+            \ what information is required to provide a complete answer.\n\n2. Review\
+            \ the list of queries that have already been used to search for information.\n\
+            \n3. Examine the current findings and assess their relevance and completeness\
+            \ in relation to the question.\n\n4. Determine whether the current findings\
+            \ are sufficient to answer the question fully. Consider the following:\n\
+            \   - Do the findings address all aspects of the question?\n   - Is there\
+            \ any missing or incomplete information?\n   - Are there any contradictions\
+            \ or ambiguities that need clarification?\n\n5. Based on your assessment,\
+            \ decide whether to continue searching or not:\n   - If the findings are\
+            \ sufficient, set \"shouldContinue\" to \"false\".\n   - If more information\
+            \ is needed, set \"shouldContinue\" to \"true\".\n\n6. If you decide to\
+            \ continue searching, formulate a new query that:\n   - Targets the missing\
+            \ information or clarifies ambiguities\n   - Is different from the queries\
+            \ already used\n   - Is likely to yield relevant results\n\n7. If you\
+            \ decide not to continue searching, set \"nextQuery\" to \"None\".\n\n\
+            Output your decision in JSON format as follows:\n\n<output>\n{\n  \"shouldContinue\"\
+            : \"true or false\",\n  \"nextQuery\": \"None or your formulated query\"\
+            \n}\n</output>\n\nEnsure that the values for \"shouldContinue\" and \"\
+            nextQuery\" are strings. The \"nextQuery\" should be \"None\" (as a string)\
+            \ if no further search is needed, or a new query string if more information\
+            \ is required."
+        - id: 7d613548-9248-448e-aac4-6097a21951ff
+          role: user
+          text: '<question>
+
+            {{#conversation.nextQuery#}}
+
+            </question>
+
+
+            <queries>
+
+            {{#conversation.QueriesSearched#}}
+
+            </queries>
+
+
+            <findings>
+
+            {{#conversation.findings#}}
+
+            </findings>'
+        selected: false
+        title: LLM Should Continue
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745945312164'
+      parentId: '1745943946427'
+      position:
+        x: 1724
+        y: 114
+      positionAbsolute:
+        x: 3274
+        y: 584
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745943903028'
+          - text
+          variable_selector:
+          - conversation
+          - nextQuery
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner 2
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745945373738'
+      position:
+        x: 1246
+        y: 470
+      positionAbsolute:
+        x: 1246
+        y: 470
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        is_team_authorization: true
+        loop_id: '1745943946427'
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: Should Continue
+        tool_configurations:
+          ensure_ascii: 0
+        tool_description: A tool for extracting JSON objects
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1745945312164.text#}}'
+          json_filter:
+            type: mixed
+            value: shouldContinue
+        type: tool
+      height: 90
+      id: '1745945672839'
+      parentId: '1745943946427'
+      position:
+        x: 2028
+        y: 114
+      positionAbsolute:
+        x: 3578
+        y: 584
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: e24180a7-dcee-4246-a868-9d91dca6473a
+            value: 'false'
+            varType: string
+            variable_selector:
+            - '1745945672839'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1745945703443'
+      parentId: '1745943946427'
+      position:
+        x: 2940
+        y: 96
+      positionAbsolute:
+        x: 4490
+        y: 566
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        answer: '
+
+          ## Findings:
+
+          {{#1745946819221.text#}}
+
+          '
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        selected: false
+        title: Answer LLM Extract Findings
+        type: answer
+        variables: []
+      height: 121
+      id: '1745945983282'
+      parentId: '1745943946427'
+      position:
+        x: 2028
+        y: 245.5
+      positionAbsolute:
+        x: 3578
+        y: 715.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.6
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 6f0b80ca-575b-42f7-97d3-a9d58c323deb
+          role: system
+          text: "You are an AI assistant tasked with answering a question based on\
+            \ a set of current findings. Your goal is to provide a comprehensive and\
+            \ accurate answer using the information available. Follow these steps:\n\
+            \n1. Review the following question:\n<question>\n{{QUESTION}}\n</question>\n\
+            \n2. Carefully analyze the current findings provided:\n<findings>\n{{FINDINGS}}\n\
+            </findings>\n\n3. Based on the information in the findings, formulate\
+            \ a comprehensive answer to the question. Ensure that your response:\n\
+            \   - Directly addresses the question asked\n   - Incorporates relevant\
+            \ information from the findings\n   - Is as detailed and thorough as possible\
+            \ given the available information\n   - Uses the same language as the\
+            \ question (e.g., if the question is in French, answer in French)\n\n\
+            4. Structure your response in a clear and organized manner. Use paragraphs,\
+            \ bullet points, or numbered lists as appropriate to present the information\
+            \ effectively.\n\n5. After providing your answer, include a \"Sources\"\
+            \ section at the end of your response. List the sources mentioned in the\
+            \ findings using the following format:\n# Sources:\n1. [Link Title 1](URL1)\n\
+            2. [Link Title 2](URL2)\n...and so on for all relevant sources.\n\nRemember\
+            \ to maintain the language of the original question throughout your response.\
+            \ Do not include any disclaimers about the limitations of your knowledge\
+            \ or the need for additional research. Base your answer solely on the\
+            \ information provided in the findings."
+        - id: ab0aa8e3-1d71-4005-83a1-b3a27ce77f1c
+          role: user
+          text: 'Consider this question:
+
+            <question>
+
+            {{#sys.query#}}
+
+            </question>
+
+
+            Review the following findings:
+
+            <findings>
+
+            {{#conversation.findings#}}
+
+            </findings>'
+        selected: false
+        title: LLM Final Answer
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745946067913'
+      position:
+        x: 5158
+        y: 470
+      positionAbsolute:
+        x: 5158
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '
+
+          ## Final Answer:
+
+          {{#1745946067913.text#}}'
+        desc: ''
+        selected: false
+        title: Final Answer
+        type: answer
+        variables: []
+      height: 121
+      id: '1745946106070'
+      position:
+        x: 5462
+        y: 470
+      positionAbsolute:
+        x: 5462
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745945672839'
+          - text
+          variable_selector:
+          - conversation
+          - shouldContinue
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Variable Assigner 3
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745946151228'
+      parentId: '1745943946427'
+      position:
+        x: 3244
+        y: 115
+      positionAbsolute:
+        x: 4794
+        y: 585
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745946219029'
+          - text
+          variable_selector:
+          - conversation
+          - nextQuery
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Variable Assigner 4
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745946198483'
+      parentId: '1745943946427'
+      position:
+        x: 2636
+        y: 115
+      positionAbsolute:
+        x: 4186
+        y: 585
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        is_team_authorization: true
+        loop_id: '1745943946427'
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: Next Query
+        tool_configurations:
+          ensure_ascii: 0
+        tool_description: A tool for extracting JSON objects
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1745945312164.text#}}'
+          json_filter:
+            type: mixed
+            value: nextQuery
+        type: tool
+      height: 90
+      id: '1745946219029'
+      parentId: '1745943946427'
+      position:
+        x: 2332
+        y: 114
+      positionAbsolute:
+        x: 3882
+        y: 584
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is not
+            id: ad0bd34d-73ff-451b-a326-436e528d61d2
+            value: '[]'
+            varType: string
+            variable_selector:
+            - '1745944704608'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        selected: false
+        title: IF/ELSE 2
+        type: if-else
+      height: 126
+      id: '1745946759840'
+      parentId: '1745943946427'
+      position:
+        x: 1420
+        y: 243
+      positionAbsolute:
+        x: 2970
+        y: 713
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        model:
+          completion_params:
+            temperature: 0.6
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 2e2aada0-cbd6-4b75-bb5c-191963b2ea6f
+          role: system
+          text: "You will be given a question and a list of current findings. Your\
+            \ task is to answer the question based solely on the provided findings.\
+            \ Follow these steps:\n\n1. Review the question:\n<question>\n{{QUESTION}}\n\
+            </question>\n\n2. Examine the current findings:\n<findings>\n{{FINDINGS}}\n\
+            </findings>\n\n3. Analyze the findings carefully, focusing on information\
+            \ relevant to the question.\n\n4. Formulate an answer based only on the\
+            \ information present in the findings. Do not introduce any external information\
+            \ or assumptions.\n\n5. Provide your answer within <answer> tags. Ensure\
+            \ that:\n   - The answer is in the same language as the question\n   -\
+            \ The response does not exceed 50 words\n   - The answer directly addresses\
+            \ the question using only the provided findings\n\nRemember, if the findings\
+            \ do not contain sufficient information to answer the question fully,\
+            \ state this limitation in your response."
+        - id: 923a6cbb-2ae8-4755-a2db-002094f099b8
+          role: user
+          text: 'Review the question:
+
+            <question>
+
+            {{#sys.query#}}
+
+            </question>
+
+
+            Examine the current findings:
+
+            <findings>
+
+            {{#1745944704608.text#}}
+
+            </findings>'
+        selected: false
+        title: LLM Answer LLM Extract Findings
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745946819221'
+      parentId: '1745943946427'
+      position:
+        x: 1724
+        y: 261
+      positionAbsolute:
+        x: 3274
+        y: 731
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: constant
+          operation: set
+          value: 'true'
+          variable_selector:
+          - conversation
+          - extractAnswerFinished
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Variable Assigner 6
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745948573072'
+      parentId: '1745943946427'
+      position:
+        x: 2332
+        y: 262
+      positionAbsolute:
+        x: 3882
+        y: 732
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - extractAnswerFinished
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Variable Assigner 7
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745948594725'
+      parentId: '1745943946427'
+      position:
+        x: 2636
+        y: 262
+      positionAbsolute:
+        x: 4186
+        y: 732
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: append
+          value:
+          - conversation
+          - nextQuery
+          variable_selector:
+          - conversation
+          - QueriesSearched
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Variable Assigner 8
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745949388671'
+      parentId: '1745943946427'
+      position:
+        x: 508
+        y: 115
+      positionAbsolute:
+        x: 2058
+        y: 585
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        classes:
+        - id: '1'
+          name: User's query is a valid question needs searching new information.
+        - id: '2'
+          name: User's query is not a valid question needs searching information.
+            like normal conversation
+        - id: '1745953192577'
+          name: User's query is a valid question can be answer by conversation history
+            and dont need to search new information.
+        desc: ''
+        instructions: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          window:
+            enabled: true
+            size: 5
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: claude-3-5-sonnet-20241022
+          provider: langgenius/anthropic/anthropic
+        query_variable_selector:
+        - '1745940550449'
+        - sys.query
+        selected: true
+        title: Question Classifier
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 306
+      id: '1745949777606'
+      position:
+        x: 334
+        y: 470
+      positionAbsolute:
+        x: 334
+        y: 470
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 20
+        model:
+          completion_params:
+            temperature: 0.6
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - role: system
+          text: You are an AI assistant that can help user gathering information from
+            the internet.
+        selected: false
+        title: Conversation
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745949819169'
+      position:
+        x: 638
+        y: 607.5
+      positionAbsolute:
+        x: 638
+        y: 607.5
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1745949819169.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 3
+        type: answer
+        variables: []
+      height: 105
+      id: '1745949901553'
+      position:
+        x: 942
+        y: 600
+      positionAbsolute:
+        x: 942
+        y: 600
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - QueriesSearched
+          write_mode: over-write
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - extractAnswerFinished
+          write_mode: over-write
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - shouldContinue
+          write_mode: over-write
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - findings
+          write_mode: over-write
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - nextQuery
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner 8
+        type: assigner
+        version: '2'
+      height: 200
+      id: '1745952448991'
+      position:
+        x: 5766
+        y: 470
+      positionAbsolute:
+        x: 5766
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -1393.8956730693967
+      y: -15.401492812298216
+      zoom: 0.6755132521386016
