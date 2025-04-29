@@ -9,35 +9,35 @@ dependencies:
 - current_identifier: null
   type: marketplace
   value:
+    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@7afb534cc85b28a8e9c7f9410d1cfc31fb7bd3950023355a37059dbe809ac776
+- current_identifier: null
+  type: marketplace
+  value:
     marketplace_plugin_unique_identifier: langgenius/anthropic:0.0.13@3c4d4e14652baa9ce1f10e934da9995b3cde0f2ec94ee6638b73fecf1ed53288
 - current_identifier: null
   type: marketplace
   value:
     marketplace_plugin_unique_identifier: langgenius/openai:0.0.20@af8b6bea00bbb4caa2f8e15b5edd2fc2bc134a9bfee74d9cc8081b8fe71eca6b
-- current_identifier: null
-  type: marketplace
-  value:
-    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@7afb534cc85b28a8e9c7f9410d1cfc31fb7bd3950023355a37059dbe809ac776
 kind: app
 version: 0.2.0
 workflow:
   conversation_variables:
   - description: ''
-    id: 338ce4e9-ebfc-4be9-99a7-a9c2b65a22b5
-    name: QueriesSearched
+    id: 4908c993-4fce-48c1-823e-113a0b65b5f2
+    name: turn
     selector:
     - conversation
-    - QueriesSearched
+    - turn
+    value: 1
+    value_type: number
+  - description: ''
+    id: 338ce4e9-ebfc-4be9-99a7-a9c2b65a22b5
+    name: queriesSearched
+    selector:
+    - conversation
+    - queriesSearched
     value: []
     value_type: array[string]
-  - description: ''
-    id: 5a20d1cd-0245-4963-a3a1-0a1d69a8a83d
-    name: extractAnswerFinished
-    selector:
-    - conversation
-    - extractAnswerFinished
-    value: ''
-    value_type: string
   - description: ''
     id: 84ff6ff2-ad61-4d65-ba0d-5d5c8467722e
     name: shouldContinue
@@ -214,19 +214,6 @@ workflow:
     - data:
         isInIteration: false
         isInLoop: false
-        sourceType: loop
-        targetType: llm
-      id: 1745943946427-source-1745946067913-target
-      selected: false
-      source: '1745943946427'
-      sourceHandle: source
-      target: '1745946067913'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
         sourceType: llm
         targetType: answer
       id: 1745946067913-source-1745946106070-target
@@ -276,20 +263,6 @@ workflow:
       source: '1745946759840'
       sourceHandle: 'true'
       target: '1745946819221'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: false
-        isInLoop: true
-        loop_id: '1745943946427'
-        sourceType: assigner
-        targetType: assigner
-      id: 1745948573072-source-1745948594725-target
-      selected: false
-      source: '1745948573072'
-      sourceHandle: source
-      target: '1745948594725'
       targetHandle: target
       type: custom
       zIndex: 1002
@@ -404,52 +377,13 @@ workflow:
         isInIteration: false
         isInLoop: true
         loop_id: '1745943946427'
-        sourceType: answer
-        targetType: assigner
-      id: 1745945983282-source-1745948573072-target
-      selected: false
-      source: '1745945983282'
-      sourceHandle: source
-      target: '1745948573072'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: false
-        isInLoop: true
-        loop_id: '1745943946427'
         sourceType: tool
         targetType: tool
       id: 1745945672839-source-1745946219029-target
+      selected: false
       source: '1745945672839'
       sourceHandle: source
       target: '1745946219029'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: false
-        isInLoop: true
-        loop_id: '1745943946427'
-        sourceType: assigner
-        targetType: if-else
-      id: 1745946198483-source-1745945703443-target
-      source: '1745946198483'
-      sourceHandle: source
-      target: '1745945703443'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: false
-        isInLoop: true
-        loop_id: '1745943946427'
-        sourceType: if-else
-        targetType: assigner
-      id: 1745945703443-true-1745946151228-target
-      source: '1745945703443'
-      sourceHandle: 'true'
-      target: '1745946151228'
       targetHandle: target
       type: custom
       zIndex: 1002
@@ -458,6 +392,7 @@ workflow:
         sourceType: answer
         targetType: assigner
       id: 1745946106070-source-1745952448991-target
+      selected: false
       source: '1745946106070'
       sourceHandle: source
       target: '1745952448991'
@@ -469,12 +404,76 @@ workflow:
         sourceType: question-classifier
         targetType: llm
       id: 1745949777606-1745953192577-1745949819169-target
+      selected: false
       source: '1745949777606'
       sourceHandle: '1745953192577'
       target: '1745949819169'
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: loop
+        targetType: llm
+      id: 1745943946427-source-1745946067913-target
+      source: '1745943946427'
+      sourceHandle: source
+      target: '1745946067913'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: answer
+        targetType: assigner
+      id: 1745945983282-source-1745961032221-target
+      source: '1745945983282'
+      sourceHandle: source
+      target: '1745961032221'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: assigner
+        targetType: template-transform
+      id: 1745946198483-source-1745961190774-target
+      source: '1745946198483'
+      sourceHandle: source
+      target: '1745961190774'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: assigner
+        targetType: template-transform
+      id: 1745961032221-source-1745961190774-target
+      source: '1745961032221'
+      sourceHandle: source
+      target: '1745961190774'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: template-transform
+        targetType: assigner
+      id: 1745961190774-source-1745946151228-target
+      source: '1745961190774'
+      sourceHandle: source
+      target: '1745946151228'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
     nodes:
     - data:
         desc: ''
@@ -486,10 +485,10 @@ workflow:
       id: '1745940550449'
       position:
         x: 30
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 30
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -565,20 +564,25 @@ workflow:
             {{#sys.query#}}
 
             </user_query>'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
         selected: false
+        structured_output_enabled: false
         title: LLM Question
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 90
+      height: 119
       id: '1745943016894'
       position:
         x: 638
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 638
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -687,10 +691,10 @@ workflow:
       id: '1745943903028'
       position:
         x: 942
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 942
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -705,16 +709,9 @@ workflow:
           variable_selector:
           - conversation
           - shouldContinue
-        - comparison_operator: is
-          id: 4ef4beb2-c455-4eb0-8504-56d5d7c52fb7
-          value: 'true'
-          varType: string
-          variable_selector:
-          - conversation
-          - extractAnswerFinished
         desc: ''
         error_handle_mode: terminated
-        height: 540
+        height: 445
         logical_operator: and
         loop_count: 10
         loop_variables:
@@ -730,14 +727,14 @@ workflow:
         title: Loop
         type: loop
         width: 3548
-      height: 540
+      height: 445
       id: '1745943946427'
       position:
         x: 1550
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 1550
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -759,7 +756,7 @@ workflow:
         y: 135
       positionAbsolute:
         x: 1610
-        y: 605
+        y: 557.5
       selectable: false
       sourcePosition: right
       targetPosition: left
@@ -1241,7 +1238,7 @@ workflow:
         y: 60
       positionAbsolute:
         x: 1754
-        y: 530
+        y: 482.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1334,21 +1331,25 @@ workflow:
             {{#1745944108136.text#}}
 
             </search_result>'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
         selected: false
         title: LLM Extract Findings
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 90
+      height: 119
       id: '1745944404219'
       parentId: '1745943946427'
       position:
         x: 812
-        y: 114
+        y: 99.5
       positionAbsolute:
         x: 2362
-        y: 584
+        y: 522
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1465,7 +1466,7 @@ workflow:
         y: 114
       positionAbsolute:
         x: 2666
-        y: 584
+        y: 536.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1488,7 +1489,7 @@ workflow:
           write_mode: over-write
         loop_id: '1745943946427'
         selected: false
-        title: Variable Assigner
+        title: Assign Findings
         type: assigner
         version: '2'
       height: 88
@@ -1499,7 +1500,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 2970
-        y: 585
+        y: 537.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1572,7 +1573,7 @@ workflow:
 
             <queries>
 
-            {{#conversation.QueriesSearched#}}
+            {{#conversation.queriesSearched#}}
 
             </queries>
 
@@ -1582,22 +1583,26 @@ workflow:
             {{#conversation.findings#}}
 
             </findings>'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
         selected: false
         title: LLM Should Continue
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 90
+      height: 119
       id: '1745945312164'
       parentId: '1745943946427'
       position:
         x: 1724
-        y: 114
+        y: 99.5
       positionAbsolute:
         x: 3274
-        y: 584
-      selected: false
+        y: 522
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1616,17 +1621,18 @@ workflow:
           - nextQuery
           write_mode: over-write
         selected: false
-        title: Variable Assigner 2
+        title: Assign NextQuery
         type: assigner
         version: '2'
       height: 88
       id: '1745945373738'
       position:
         x: 1246
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 1246
-        y: 470
+        y: 422.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1741,42 +1747,7 @@ workflow:
         y: 114
       positionAbsolute:
         x: 3578
-        y: 584
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-      zIndex: 1002
-    - data:
-        cases:
-        - case_id: 'true'
-          conditions:
-          - comparison_operator: is
-            id: e24180a7-dcee-4246-a868-9d91dca6473a
-            value: 'false'
-            varType: string
-            variable_selector:
-            - '1745945672839'
-            - text
-          id: 'true'
-          logical_operator: and
-        desc: ''
-        isInIteration: false
-        isInLoop: true
-        loop_id: '1745943946427'
-        selected: false
-        title: IF/ELSE
-        type: if-else
-      height: 126
-      id: '1745945703443'
-      parentId: '1745943946427'
-      position:
-        x: 2940
-        y: 96
-      positionAbsolute:
-        x: 4490
-        y: 566
+        y: 536.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1786,7 +1757,7 @@ workflow:
     - data:
         answer: '
 
-          ## Findings:
+          ## Findings {{#conversation.turn#}}:
 
           {{#1745946819221.text#}}
 
@@ -1799,15 +1770,15 @@ workflow:
         title: Answer LLM Extract Findings
         type: answer
         variables: []
-      height: 121
+      height: 123
       id: '1745945983282'
       parentId: '1745943946427'
       position:
-        x: 2028
-        y: 245.5
+        x: 2332
+        y: 260
       positionAbsolute:
-        x: 3578
-        y: 715.5
+        x: 3882
+        y: 682.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1877,10 +1848,10 @@ workflow:
       id: '1745946067913'
       position:
         x: 5158
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 5158
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1901,10 +1872,10 @@ workflow:
       id: '1745946106070'
       position:
         x: 5462
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 5462
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1926,7 +1897,7 @@ workflow:
           write_mode: over-write
         loop_id: '1745943946427'
         selected: false
-        title: Variable Assigner 3
+        title: Assign ShouldContinue
         type: assigner
         version: '2'
       height: 88
@@ -1937,7 +1908,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 4794
-        y: 585
+        y: 537.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1960,7 +1931,7 @@ workflow:
           write_mode: over-write
         loop_id: '1745943946427'
         selected: false
-        title: Variable Assigner 4
+        title: Assign NextQuery
         type: assigner
         version: '2'
       height: 88
@@ -1971,7 +1942,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 4186
-        y: 585
+        y: 537.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2088,7 +2059,7 @@ workflow:
         y: 114
       positionAbsolute:
         x: 3882
-        y: 584
+        y: 536.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2113,17 +2084,17 @@ workflow:
         isInLoop: true
         loop_id: '1745943946427'
         selected: false
-        title: IF/ELSE 2
+        title: Have Findings?
         type: if-else
       height: 126
       id: '1745946759840'
       parentId: '1745943946427'
       position:
-        x: 1420
-        y: 243
+        x: 1724
+        y: 258.5
       positionAbsolute:
-        x: 2970
-        y: 713
+        x: 3274
+        y: 681
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2178,85 +2149,26 @@ workflow:
             {{#1745944704608.text#}}
 
             </findings>'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
         selected: false
         title: LLM Answer LLM Extract Findings
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 90
+      height: 119
       id: '1745946819221'
       parentId: '1745943946427'
       position:
-        x: 1724
-        y: 261
-      positionAbsolute:
-        x: 3274
-        y: 731
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: false
-        isInLoop: true
-        items:
-        - input_type: constant
-          operation: set
-          value: 'true'
-          variable_selector:
-          - conversation
-          - extractAnswerFinished
-          write_mode: over-write
-        loop_id: '1745943946427'
-        selected: false
-        title: Variable Assigner 6
-        type: assigner
-        version: '2'
-      height: 88
-      id: '1745948573072'
-      parentId: '1745943946427'
-      position:
-        x: 2332
+        x: 2028
         y: 262
       positionAbsolute:
-        x: 3882
-        y: 732
+        x: 3578
+        y: 684.5
       selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: false
-        isInLoop: true
-        items:
-        - input_type: variable
-          operation: clear
-          value: ''
-          variable_selector:
-          - conversation
-          - extractAnswerFinished
-          write_mode: over-write
-        loop_id: '1745943946427'
-        selected: false
-        title: Variable Assigner 7
-        type: assigner
-        version: '2'
-      height: 88
-      id: '1745948594725'
-      parentId: '1745943946427'
-      position:
-        x: 2636
-        y: 262
-      positionAbsolute:
-        x: 4186
-        y: 732
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -2274,11 +2186,11 @@ workflow:
           - nextQuery
           variable_selector:
           - conversation
-          - QueriesSearched
+          - queriesSearched
           write_mode: over-write
         loop_id: '1745943946427'
         selected: false
-        title: Variable Assigner 8
+        title: Assign QueriesSearched
         type: assigner
         version: '2'
       height: 88
@@ -2289,7 +2201,8 @@ workflow:
         y: 115
       positionAbsolute:
         x: 2058
-        y: 585
+        y: 537.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -2321,7 +2234,7 @@ workflow:
         query_variable_selector:
         - '1745940550449'
         - sys.query
-        selected: true
+        selected: false
         title: Question Classifier
         topics: []
         type: question-classifier
@@ -2331,11 +2244,11 @@ workflow:
       id: '1745949777606'
       position:
         x: 334
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 334
-        y: 470
-      selected: true
+        y: 422.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -2360,23 +2273,29 @@ workflow:
           name: gpt-4.1
           provider: langgenius/openai/openai
         prompt_template:
-        - role: system
+        - id: 7df50733-474c-4bb2-b126-5c3fec13c691
+          role: system
           text: You are an AI assistant that can help user gathering information from
             the internet.
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
         selected: false
         title: Conversation
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 90
+      height: 119
       id: '1745949819169'
       position:
         x: 638
-        y: 607.5
+        y: 581.5
       positionAbsolute:
         x: 638
-        y: 607.5
+        y: 581.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -2392,10 +2311,10 @@ workflow:
       id: '1745949901553'
       position:
         x: 942
-        y: 600
+        y: 574
       positionAbsolute:
         x: 942
-        y: 600
+        y: 574
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -2408,14 +2327,7 @@ workflow:
           value: ''
           variable_selector:
           - conversation
-          - QueriesSearched
-          write_mode: over-write
-        - input_type: variable
-          operation: clear
-          value: ''
-          variable_selector:
-          - conversation
-          - extractAnswerFinished
+          - queriesSearched
           write_mode: over-write
         - input_type: variable
           operation: clear
@@ -2438,24 +2350,90 @@ workflow:
           - conversation
           - nextQuery
           write_mode: over-write
+        - input_type: variable
+          operation: clear
+          value: ''
+          variable_selector:
+          - conversation
+          - turn
+          write_mode: over-write
         selected: false
-        title: Variable Assigner 8
+        title: Clearance
         type: assigner
         version: '2'
       height: 200
       id: '1745952448991'
       position:
         x: 5766
-        y: 470
+        y: 422.5
       positionAbsolute:
         x: 5766
-        y: 470
+        y: 422.5
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: constant
+          operation: +=
+          value: 1
+          variable_selector:
+          - conversation
+          - turn
+          write_mode: over-write
+        loop_id: '1745943946427'
+        selected: false
+        title: Assign Turn
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1745961032221'
+      parentId: '1745943946427'
+      position:
+        x: 2636
+        y: 277.5
+      positionAbsolute:
+        x: 4186
+        y: 700
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        selected: false
+        template: '
+
+          '
+        title: Wait
+        type: template-transform
+        variables: []
+      height: 54
+      id: '1745961190774'
+      parentId: '1745943946427'
+      position:
+        x: 2940
+        y: 132
+      positionAbsolute:
+        x: 4490
+        y: 554.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
     viewport:
-      x: -1393.8956730693967
-      y: -15.401492812298216
-      zoom: 0.6755132521386016
+      x: -3076
+      y: -54
+      zoom: 0.7
