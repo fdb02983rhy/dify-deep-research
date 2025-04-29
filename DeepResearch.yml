@@ -4,12 +4,8 @@ app:
   icon_background: '#FFEAD5'
   mode: advanced-chat
   name: DeepResearch
-  use_icon_as_answer_icon: false
+  use_icon_as_answer_icon: true
 dependencies:
-- current_identifier: null
-  type: marketplace
-  value:
-    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@7afb534cc85b28a8e9c7f9410d1cfc31fb7bd3950023355a37059dbe809ac776
 - current_identifier: null
   type: marketplace
   value:
@@ -18,6 +14,10 @@ dependencies:
   type: marketplace
   value:
     marketplace_plugin_unique_identifier: langgenius/openai:0.0.20@af8b6bea00bbb4caa2f8e15b5edd2fc2bc134a9bfee74d9cc8081b8fe71eca6b
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@7afb534cc85b28a8e9c7f9410d1cfc31fb7bd3950023355a37059dbe809ac776
 kind: app
 version: 0.2.0
 workflow:
@@ -284,20 +284,6 @@ workflow:
         isInIteration: false
         isInLoop: true
         loop_id: '1745943946427'
-        sourceType: agent
-        targetType: assigner
-      id: 1745944108136-source-1745949388671-target
-      selected: false
-      source: '1745944108136'
-      sourceHandle: source
-      target: '1745949388671'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: false
-        isInLoop: true
-        loop_id: '1745943946427'
         sourceType: assigner
         targetType: llm
       id: 1745949388671-source-1745944404219-target
@@ -474,6 +460,19 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745943946427'
+        sourceType: agent
+        targetType: assigner
+      id: 1745944108136-source-1745949388671-target
+      source: '1745944108136'
+      sourceHandle: source
+      target: '1745949388671'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
     nodes:
     - data:
         desc: ''
@@ -485,10 +484,10 @@ workflow:
       id: '1745940550449'
       position:
         x: 30
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 30
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -579,10 +578,10 @@ workflow:
       id: '1745943016894'
       position:
         x: 638
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 638
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -691,10 +690,10 @@ workflow:
       id: '1745943903028'
       position:
         x: 942
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 942
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -711,7 +710,7 @@ workflow:
           - shouldContinue
         desc: ''
         error_handle_mode: terminated
-        height: 445
+        height: 478
         logical_operator: and
         loop_count: 10
         loop_variables:
@@ -727,14 +726,14 @@ workflow:
         title: Loop
         type: loop
         width: 3548
-      height: 445
+      height: 478
       id: '1745943946427'
       position:
         x: 1550
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 1550
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -756,7 +755,7 @@ workflow:
         y: 135
       positionAbsolute:
         x: 1610
-        y: 557.5
+        y: 574
       selectable: false
       sourcePosition: right
       targetPosition: left
@@ -767,24 +766,64 @@ workflow:
         agent_parameters:
           instruction:
             type: constant
-            value: "You are an AI assistant tasked with answering questions using\
-              \ the tavily_search tool to find relevant information. Your goal is\
-              \ to provide accurate and helpful answers based on the search results.\n\
-              \nSearch information follow the below instructions:\n- Determine the\
-              \ most appropriate language(use only 1 lanugage per search) for the\
-              \ search based on the query's subject matter (e.g., use Japanese for\
-              \ queries about Japan, Chinese for queries about China, etc.).\n- Breakdown\
-              \ the query if necessary to improve search results, let the user know\
-              \ which language you will use to search for information.\n- Use the\
-              \ tool \"tavily_search\" to gather up-to-date information. \n- After\
-              \ receiving the search results, analyze the information and formulate\
-              \ your response.\n- Provide your answer to the user's query, incorporating\
-              \ the information gathered from the search, and include the sources\
-              \ at the end of your output in the following format:\n# Sources:\n1.\
-              \ [Link Title 1](URL1)\n2. [Link Title 2](URL2)"
+            value: 'You are an AI assistant tasked with answering questions using
+              the think tool and tavily_search tool to think and find relevant information.
+              Your goal is to provide accurate and helpful answers based on the search
+              results.
+
+
+              Before taking any action, use the think tool to make a plan. Follow
+              these steps:
+
+
+              1. Use the think tool to determine the most appropriate language for
+              the search based on the query''s subject matter (e.g., use Japanese
+              for queries about Japan, Chinese for queries about China, etc.). Use
+              only one language per search.
+
+
+              2. Use the think tool to consider if you need to break down the query
+              into sub-queries to search first.
+
+
+              3. Use the think tool to determine what parameters you need to use for
+              tavily_search.
+
+
+              4. After receiving the search results, use the think tool to evaluate
+              if you need another search to answer the original question or if you
+              should proceed with the next search.
+
+
+              5. Use the tavily_search tool to perform the search(es) based on your
+              thinking process. Make sure to use the appropriate language and parameters
+              you determined earlier.
+
+
+              6. After gathering all necessary information, use the think tool to
+              formulate your answer to the user''s query, incorporating the information
+              from the search results.
+
+
+              7. Provide your answer to the user''s query, ensuring it is accurate,
+              helpful, and based on the search results.
+
+
+              8. Include the sources at the end of your output in the following format:
+
+
+              # Sources:
+
+              1. [Link Title 1](URL1)
+
+              2. [Link Title 2](URL2)
+
+
+              Remember to use the think tool before each major step to plan your approach
+              and ensure you''re providing the most accurate and helpful answer possible.'
           maximum_iterations:
             type: constant
-            value: 4
+            value: 10
           model:
             type: constant
             value:
@@ -813,8 +852,10 @@ workflow:
                   auto: 1
                   value: null
                 search_depth:
-                  auto: 1
-                  value: null
+                  auto: 0
+                  value:
+                    type: constant
+                    value: basic
                 time_range:
                   auto: 1
                   value: null
@@ -1218,6 +1259,46 @@ workflow:
               tool_label: Tavily Search
               tool_name: tavily_search
               type: builtin
+            - enabled: true
+              extra:
+                description: A tool that allows LLMs to think. It will not obtain
+                  new information or change any data, but just log the thought.
+              parameters:
+                thought:
+                  auto: 1
+                  value: null
+              provider_name: kalochin/think/think
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: A thought to think about.
+                  ja_JP: A thought to think about.
+                  pt_BR: A thought to think about.
+                  zh_Hans: 需要思考的内容。
+                label:
+                  en_US: Thought
+                  ja_JP: Thought
+                  pt_BR: Thought
+                  zh_Hans: 思考内容
+                llm_description: A thought to think about.
+                max: null
+                min: null
+                name: thought
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: A tool that allows LLMs to think. It will not obtain
+                new information or change any data, but just log the thought.
+              tool_label: Think
+              tool_name: think
+              type: builtin
         agent_strategy_label: FunctionCalling
         agent_strategy_name: function_calling
         agent_strategy_provider_name: langgenius/agent/agent
@@ -1238,8 +1319,8 @@ workflow:
         y: 60
       positionAbsolute:
         x: 1754
-        y: 482.5
-      selected: false
+        y: 499
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1349,7 +1430,7 @@ workflow:
         y: 99.5
       positionAbsolute:
         x: 2362
-        y: 522
+        y: 538.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1466,7 +1547,7 @@ workflow:
         y: 114
       positionAbsolute:
         x: 2666
-        y: 536.5
+        y: 553
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1500,7 +1581,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 2970
-        y: 537.5
+        y: 554
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1601,8 +1682,8 @@ workflow:
         y: 99.5
       positionAbsolute:
         x: 3274
-        y: 522
-      selected: true
+        y: 538.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1628,10 +1709,10 @@ workflow:
       id: '1745945373738'
       position:
         x: 1246
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 1246
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1747,7 +1828,7 @@ workflow:
         y: 114
       positionAbsolute:
         x: 3578
-        y: 536.5
+        y: 553
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1778,7 +1859,7 @@ workflow:
         y: 260
       positionAbsolute:
         x: 3882
-        y: 682.5
+        y: 699
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1848,10 +1929,10 @@ workflow:
       id: '1745946067913'
       position:
         x: 5158
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 5158
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1872,10 +1953,10 @@ workflow:
       id: '1745946106070'
       position:
         x: 5462
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 5462
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1908,7 +1989,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 4794
-        y: 537.5
+        y: 554
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1942,7 +2023,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 4186
-        y: 537.5
+        y: 554
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2059,7 +2140,7 @@ workflow:
         y: 114
       positionAbsolute:
         x: 3882
-        y: 536.5
+        y: 553
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2094,7 +2175,7 @@ workflow:
         y: 258.5
       positionAbsolute:
         x: 3274
-        y: 681
+        y: 697.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2167,7 +2248,7 @@ workflow:
         y: 262
       positionAbsolute:
         x: 3578
-        y: 684.5
+        y: 701
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2201,7 +2282,7 @@ workflow:
         y: 115
       positionAbsolute:
         x: 2058
-        y: 537.5
+        y: 554
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2244,10 +2325,10 @@ workflow:
       id: '1745949777606'
       position:
         x: 334
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 334
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2291,10 +2372,10 @@ workflow:
       id: '1745949819169'
       position:
         x: 638
-        y: 581.5
+        y: 598
       positionAbsolute:
         x: 638
-        y: 581.5
+        y: 598
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2311,10 +2392,10 @@ workflow:
       id: '1745949901553'
       position:
         x: 942
-        y: 574
+        y: 590.5
       positionAbsolute:
         x: 942
-        y: 574
+        y: 590.5
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -2365,10 +2446,10 @@ workflow:
       id: '1745952448991'
       position:
         x: 5766
-        y: 422.5
+        y: 439
       positionAbsolute:
         x: 5766
-        y: 422.5
+        y: 439
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2399,7 +2480,7 @@ workflow:
         y: 277.5
       positionAbsolute:
         x: 4186
-        y: 700
+        y: 716.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2426,7 +2507,7 @@ workflow:
         y: 132
       positionAbsolute:
         x: 4490
-        y: 554.5
+        y: 571
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2434,6 +2515,6 @@ workflow:
       width: 244
       zIndex: 1002
     viewport:
-      x: -3076
-      y: -54
+      x: -1072.0999999999995
+      y: -78.79999999999993
       zoom: 0.7
